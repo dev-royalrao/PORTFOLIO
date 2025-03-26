@@ -1,5 +1,6 @@
 ## 🙋‍♂️ Introducing Myself
-![1694720193173](https://github.com/user-attachments/assets/dbab83e5-80c7-466a-bd22-de7b76af8746)
+![Black and White Modern Professional Sales and Marketing Profile LinkedIn Banner (1)](https://github.com/user-attachments/assets/683a28f3-cacf-4c79-b0fb-f07e6d5e3d25)
+
 
 Hello, I'm Royal Rao. Data Analyst with expertise in data analysis and reporting, query optimization, database design, and data modelling. 
 
