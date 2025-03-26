@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Royal Rao</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Floating background elements */
+    .floating-element {
+      position: fixed;
+      opacity: 0.7;
+      animation: float 8s ease-in-out infinite;
+      z-index: 0;
+    }
+    /* Left-side floating elements */
+    .floating-left {
+      left: 0;
+    }
+    /* Right-side floating elements */
+    .floating-right {
+      right: 0;
+    }
+    /* Different shapes */
+    .floating-element.circle {
+      width: 100px;
+      height: 100px;
+      background: rgba(0,122,204,0.1);
+      border: 1px solid #007acc;
+      border-radius: 50%;
+    }
+    .floating-element.square {
+      width: 150px;
+      height: 80px;
+      background: rgba(0,122,204,0.1);
+      border: 1px solid #007acc;
+    }
+    .floating-element.triangle {
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 80px solid rgba(0,122,204,0.1);
+      background: none;
+    }
+    .floating-element.diamond {
+      width: 80px;
+      height: 80px;
+      background: rgba(0,122,204,0.1);
+      border: 1px solid #007acc;
+      transform: rotate(45deg);
+    }
+    /* Positioning for each floating element */
+    .floating-left.one {
+      top: 15%;
+      margin-left: -50px;
+    }
+    .floating-left.two {
+      top: 50%;
+      margin-left: -60px;
+    }
+    .floating-right.three {
+      top: 40%;
+      margin-right: -40px;
+    }
+    .floating-right.four {
+      top: 70%;
+      margin-right: -30px;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    /* Top header container */
+    .top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #007acc, #005f99); /* Updated background */
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+    /* Left section: profile pic above name and Data Analyst */
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #fff;
+    }
+    .left-section .profile-pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #007acc;
+      margin-bottom: 5px;
+    }
+    .left-section h1 {
+      margin: 5px 0 0;
+      font-size: 1.8em;
+    }
+    .left-section p {
+      margin: 5px 0 0;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    /* Right section: floating nav and extra image */
+    .right-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .floating-nav {
+      display: flex;
+      gap: 15px;
+    }
+    .floating-nav a {
+      background: rgba(0,122,204,0.1);
+      border: 1px solid #007acc;
+      border-radius: 4px;
+      padding: 5px 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+    .floating-nav a:hover {
+      background: #007acc;
+    }
+    .skills-image {
+      width: 120px;
+      height: auto;
+      border: 2px solid #007acc;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+    /* Main centered heading */
+    header {
+      margin: 20px 0 10px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    header h2 {
+      font-size: 2.5em;
+      color: #003366;
+      margin: 0;
+    }
+    /* Sub-box styling for sections */
+    .sub-box {
+      width: 80%;
+      max-width: 900px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      margin: 20px 0;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .sub-box h3 {
+      color: #003366;
+      border-bottom: 3px solid #007acc;
+      padding-bottom: 10px;
+      margin-top: 0;
+      font-size: 1.8em;
+    }
+    .sub-box p {
+      margin: 15px 0;
+      text-align: center;
+      color: #555;
+    }
+    .sub-box ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+    .sub-box ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    /* Container for side-by-side items */
+    .item-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .item-box {
+      background: linear-gradient(135deg, #ffffff, #f2f2f2);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-width: 220px;
+    }
+    .item-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .item-box small {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.85em;
+      color: #555;
+    }
+    /* Project container for My Work section */
+    .project-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .project-box {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: left;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .project-box h4 {
+      margin: 0;
+      color: #003366;
+    }
+    .project-box p {
+      margin: 10px 0 0;
+      font-size: 0.95em;
+      color: #555;
+    }
+    /* Experience container for My Work Experience */
+    .experience-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .experience-box {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: left;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .experience-box h4 {
+      margin: 0;
+      color: #003366;
+    }
+    .experience-box p {
+      margin: 10px 0 0;
+      font-size: 1em;
+      color: #555;
+    }
+    .experience-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .experience-box ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    /* Style for toggle button */
+    .toggle-btn {
+      background-color: #007acc;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    .toggle-btn:hover {
+      background-color: #005f99;
+    }
+    /* Add dash before each bullet point */
+    .experience-box ul li::before {
+      content: "- ";
+      color: #007acc;
+      font-weight: bold;
+    }
+    footer {
+  text-align: center;
+  padding: 20px 0;
+  background: linear-gradient(45deg, #007acc, #005f99); /* Updated background */
+  color: #fff;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+  </style>
+</head>
+<body>
+  <!-- Floating background elements positioned on the sides with different shapes -->
+  <div class="floating-element floating-left one circle"></div>
+  <div class="floating-element floating-left two square"></div>
+  <div class="floating-element floating-right three triangle"></div>
+  <div class="floating-element floating-right four diamond"></div>
+
+  <!-- Top header with left section (profile pic above name & Data Analyst) and right section (floating nav + extra image) -->
+  <div class="top-header">
+    <div class="left-section">
+      <img src="profile.jpg" alt="Royal Rao Profile Picture" class="profile-pic" />
+      <h1>Royal Rao</h1>
+      <p>Data Analyst</p>
+    </div>
+    <div class="right-section">
+      <div class="floating-nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">My Work</a>
+        <a href="#work-experience">My Work Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <!-- Extra image below floating icons -->
+      <img src="skills.png" alt="Skills Icons" class="skills-image" />
+    </div>
+  </div>
+
+  <!-- Main centered heading with tagline -->
+  <header>
+    <h2>Mindful analyst, decoding patterns to unravel the big picture</h2>
+  </header>
+
+  <!-- Sub-box for About Me -->
+  <div class="sub-box" id="about">
+    <h3>About Me</h3>
+    <p>
+      Highly motivated and detail-oriented data analyst with expertise in business intelligence, predictive modeling, and interactive dashboard development. Passionate about transforming complex data into actionable insights.
+    </p>
+  </div>
+
+ 
+
+<!-- Updated Skills & Expertise Section -->
+<div class="sub-box" id="skills">
+  <h3>Skills & Expertise</h3>
+  <p>Take a look at my core competencies.</p>
+  
+  <!-- Row for Frameworks -->
+  <div class="item-container">
+    <div class="item-box">
+      <h4>Frameworks</h4>
+      <div class="frameworks-container">
+        <div class="framework-section">
+          <strong>Data Analysis &amp; Reporting</strong>
+          <p>(Excel, Python, Jupyter Notebook)</p>
+        </div>
+        <div class="framework-section">
+          <strong>Data Collection</strong>
+          <p>(SQL, Google Sheets, MS Office)</p>
+        </div>
+        <div class="framework-section">
+          <strong>Data Visualization</strong>
+          <p>(Power BI, Tableau, Google Analytics, Google Data Studio)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row for Machine Learning & Business Intelligence (side by side) -->
+  <div class="item-container">
+    <div class="item-box">
+      <h4>Machine Learning &amp; Predictive Analytics</h4>
+      <p>Expert in building predictive models and implementing machine learning algorithms.</p>
+    </div>
+    <div class="item-box">
+      <h4>Business Intelligence &amp; Process Optimization</h4>
+      <p>Skilled in leveraging data insights for strategic decision-making and enhancing operational efficiency.</p>
+    </div>
+  </div>
+  
+  <!-- Row for Languages -->
+  <div class="item-container">
+    <div class="item-box">
+      <h4>Languages</h4>
+      <p>Hindi, English</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Container for side-by-side item boxes */
+  .item-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .item-box {
+    background: linear-gradient(135deg, #ffffff, #f2f2f2);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 220px;
+  }
+  .item-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  .item-box small {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: #555;
+  }
+  /* Frameworks container styling */
+  .frameworks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .framework-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 0.9em;
+    color: #555;
+  }
+  .framework-section strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #003366;
+  }
+</style>
+
+<!-- Sub-box for My Work -->
+<div class="sub-box" id="work">
+  <h3>My Work</h3>
+  <p>Take a look at my latest work.</p>
+  
+  <!-- Row 1: Dashboard Creation -->
+  <div class="project-container">
+    <div class="project-box">
+      <h4>Dashboard Creation</h4>
+      <div class="dashboard-container">
+        <div class="dashboard-section">
+          <strong>Quality Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>Sales Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>Purchase Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>BOM Cost History Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>NPD KPI</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>R&amp;D China Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>TRC Dashboard</strong>
+          <p>(Testing &amp; Repairing Centre)</p>
+        </div>
+        <div class="dashboard-section">
+          <strong>Madhav Ecommerce Dashboard</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>PDCL Report</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>DDC Dashboard</strong>
+          <p>(Data &amp; Documentation Control)</p>
+        </div>
+        <!-- New Dashboard Items -->
+        <div class="dashboard-section">
+          <strong>TAT for Test in PDCL Lab</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>Dept Wise MI Prod &amp; Rej Data</strong>
+        </div>
+        <div class="dashboard-section">
+          <strong>WI'S IC Burning &amp; Coding Process</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 2: Credit Card Fraud and Movie Rating Prediction side by side -->
+  <div class="project-container">
+    <div class="project-box">
+      <h4>Credit Card Fraud</h4>
+      <p>Implemented fraud detection algorithms to identify and mitigate credit card fraud risks.</p>
+    </div>
+    <div class="project-box">
+      <h4>Movie Rating Prediction</h4>
+      <p>Developed machine learning models to predict movie ratings based on various features.</p>
+    </div>
+  </div>
+  
+  <!-- Row 3: Wireless Power Transmission and Mobile Signal Jamming Circuit side by side -->
+  <div class="project-container">
+    <div class="project-box">
+      <h4>Wireless Power Transmission</h4>
+      <p>Researched and implemented techniques for efficient wireless power transmission systems.</p>
+    </div>
+    <div class="project-box">
+      <h4>Mobile Signal Jamming Circuit</h4>
+      <p>Designed and built a circuit to jam mobile signals for controlled testing environments.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Container and Section Styles -->
+<style>
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .dashboard-section {
+    background: #eef6fc;
+    border: 1px solid #007acc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.95em;
+    color: #003366;
+    transition: background 0.3s;
+  }
+  .dashboard-section:hover {
+    background: #d0e8f8;
+  }
+  .dashboard-section p {
+    margin: 0;
+    font-size: 0.8em;
+    color: #555;
+  }
+</style>
+
+
+
+  <!-- Sub-box for My Work Experience -->
+  <div class="sub-box" id="work-experience">
+    <h3>My Work Experience</h3>
+    <p>Where I've interned and worked during my career.</p>
+    <div class="experience-container">
+      <div class="experience-box">
+        <h4>Microtek New Technologies Pvt. Ltd</h4>
+        <p><strong>Data Analyst</strong> | Aug. 2024 – Present | Himachal Pradesh, India</p>
+        <div class="experience-details" id="exp1" style="display: none;">
+          <ul>
+            <li>Developed a robust database leveraging SAP and Google Sheets to efficiently manage product descriptions and catalogs.</li>
+            <li>Designed and implemented process improvements, including test quality metrics that streamlined workflows and reduced production defects.</li>
+            <li>Executed over seven projects involving extensive research, data collection, and advanced visualization using Power BI and Google Sheets.</li>
+            <li>Collaborated with project managers to optimize New Product Development timelines and significantly reduce product defect rates.</li>
+            <li>Prepared and delivered detailed weekly and monthly MIS reports, enhancing product development strategies and data visualization for leadership.</li>
+            <li>Developed key dashboards for Sales, Purchase, BOM Costing, DDC, NPD, Department-wise Quality, and R&amp;D to drive data-informed decision-making.</li>
+          </ul>
+        </div>
+        <button class="toggle-btn" onclick="toggleExperience('exp1', this)">Show More ↓</button>
+      </div>
+      <div class="experience-box">
+        <h4>Extech Digital</h4>
+        <p><strong>Python Developer/Data Analyst</strong> | Aug 2023 - Aug 2024 | Mohali, Punjab</p>
+        <div class="experience-details" id="exp2" style="display: none;">
+          <ul>
+            <li>Developed expertise in writing clean, efficient, and maintainable Python code for robust application development.</li>
+            <li>Extracted, cleansed, and prepared data using Python, SQL, and Excel to support analytical insights.</li>
+            <li>Optimized applications for enhanced speed and scalability, ensuring high-performance solutions.</li>
+            <li>Created compelling data visualizations with Power BI and Google Sheets to facilitate strategic decision-making.</li>
+            <li>Maintained a consistent 98% on-time report delivery record.</li>
+          </ul>
+        </div>
+        <button class="toggle-btn" onclick="toggleExperience('exp2', this)">Show More ↓</button>
+      </div>
+      <div class="experience-box">
+        <h4>Codsoft, Internpe</h4>
+        <p><strong>Data Science (Intern)</strong> | Aug 2023 - Sep 2023 | New Delhi, India</p>
+        <div class="experience-details" id="exp3" style="display: none;">
+          <ul>
+            <li>Gained hands-on experience in SQL and Python by developing and analyzing interactive dashboards to enhance data-driven insights.</li>
+          </ul>
+        </div>
+        <button class="toggle-btn" onclick="toggleExperience('exp3', this)">Show More ↓</button>
+      </div>
+      <div class="experience-box">
+        <h4>Alttc, BSNL</h4>
+        <p><strong>Integrated Telecom Networks and Cybersecurity (Trainee)</strong> | Jun 2023 - Jul 2023 | Uttar Pradesh, India</p>
+        <div class="experience-details" id="exp4" style="display: none;">
+          <ul>
+            <li>Investigated advanced telecom technologies and industry best practices to deepen understanding of data networks and cybersecurity.</li>
+          </ul>
+        </div>
+        <button class="toggle-btn" onclick="toggleExperience('exp4', this)">Show More ↓</button>
+      </div>
+    </div>
+  </div>
+
+ <!-- Sub-box for Certifications & Achievements -->
+<div class="sub-box" id="certifications">
+  <h3>Certifications &amp; Achievements</h3>
+  <p>Take a look at my professional certifications.</p>
+  <div class="item-container">
+    <div class="item-box">Google Data Analytics Professional Certificate</div>
+    <div class="item-box">Microsoft Certified: Data Analyst Associate</div>
+    <div class="item-box">(Industrial Training) Integrated Telecom/Data Network &amp; Cyber Security : Alttc Bsnl</div>
+    <div class="item-box">C/C++ : Aptech Learning</div>
+    <div class="item-box">Python : LUDIFU, Excellence Technology</div>
+    <div class="item-box">Power BI : LUDIFU</div>
+    <div class="item-box">AI For India 2.0 : GUVI (Skill India Digital)</div>
+    <div class="item-box">Campus Recruitment Training cum Soft Skills Development Program (CRT) : Rubicon Skill Development Pvt. Ltd.</div>
+    <div class="item-box">Personality Development Course : Excellence Technology</div>
+  </div>
+</div>
+
+
+<!-- Sub-box for Education -->
+<div class="sub-box" id="education">
+  <h3>Education</h3>
+  <p>Take a look at my formal education.</p>
+  <div class="item-container">
+    <div class="item-box">
+      <strong>Master of Technology, Data Engineering</strong><br>
+      (2025-2027)<br>
+      IIT Jodhpur<br>
+      Rajasthan, India
+    </div>
+    <div class="item-box">
+      <strong>Bachelor of Technology, Electronics & Communication</strong><br>
+      (2020-2024)<br>
+      Guru Jambheshwar University<br>
+      Haryana, India
+    </div>
+    <div class="item-box">
+      <strong>Intermediate Schooling</strong><br>
+      (2018-2020)<br>
+      School Of Excellence<br>
+      New Delhi, India
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Sub-box for My Resume -->
+<div class="sub-box" id="resume">
+  <h3>My Resume</h3>
+  <p>Click the button below to view my resume</p>
+  <a href="https://github.com/your-github-username/your-resume-repo" target="_blank" style="display: inline-block; background-color: #007acc; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px;">
+    View Resume
+  </a>
+</div>
+
+
+<script>
+  function toggleResume() {
+    var container = document.getElementById('resume-container');
+    var btn = document.getElementById('show-resume-btn');
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      btn.textContent = "Hide Resume ↑";
+    } else {
+      container.style.display = "none";
+      btn.textContent = "Show Resume ↓";
+    }
+  }
+</script>
+
+
+<!-- Footer with Contact Details -->
+  <footer>
+    <p><strong>Contact:</strong></p>
+    <p>Email: royalrao.edu@gmail.com | Phone: +91-9968654237</p>
+    <p>
+      LinkedIn: <a href="https://www.linkedin.com/in/royal-rao-443298228/">Royal Rao</a> |
+      GitHub: <a href="https://github.com/dev-royalrao">dev-royalrao</a>
+    </p>
+    <p>&copy; 2025 Royal Rao. All Rights Reserved.</p>
+  </footer>>
+
+<script>
+  function toggleResume() {
+    var container = document.getElementById('resume-container');
+    var btn = document.getElementById('show-resume-btn');
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      btn.textContent = "Hide Resume ↑";
+    } else {
+      container.style.display = "none";
+      btn.textContent = "Show Resume ↓";
+    }
+  }
+</script>
+
+
+  <script>
+    function toggleExperience(expId, btn) {
+      var expDetails = document.getElementById(expId);
+      if(expDetails.style.display === "none") {
+        expDetails.style.display = "block";
+        btn.textContent = "Show Less ↑";
+      } else {
+        expDetails.style.display = "none";
+        btn.textContent = "Show More ↓";
+      }
+    }
+  </script>
+</body>
+</html>
