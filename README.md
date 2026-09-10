@@ -1,6 +1,7 @@
 ## 🙋 Introducing Myself
 
-![Royal Rao Banner](https://github.com/user-attachments/assets/683a28f3-cacf-4c79-b0fb-f07e6d5e3d25)
+<img width="1584" height="396" alt="Black and White Modern Professional Sales and Marketing Profile LinkedIn Banner" src="https://github.com/user-attachments/assets/087a2d52-80d1-455d-ad10-c426bbfef795" />
+
 
 Hello, I'm **Royal Rao** — a Senior Developer specializing in full-stack development, AI automation, and data engineering. I build and deploy scalable web & mobile apps and AI-driven workflows that turn manual processes into efficient, data-driven products.
 
