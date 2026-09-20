@@ -46,4 +46,4 @@ Hello, I'm **Royal Rao** — a Senior Developer specializing in full-stack devel
 - [GitHub](https://github.com/dev-royalrao)
 - [Gmail](mailto:royalrao.edu@gmail.com)
 
-**Portfolio Website:** https://github.com/dev-royalrao/PORTFOLIO/blob/main/portfolio.html
+**Portfolio Website:** https://dev-royalrao.github.io/PORTFOLIO/
