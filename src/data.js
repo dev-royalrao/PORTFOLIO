@@ -1,7 +1,11 @@
 // Everything configurable lives in .env (copy .env.example). The fallbacks keep
 // the site working if a var is missing — an empty var means "hide that feature".
-const env = import.meta.env
-const val = (v, fallback = '') => (v ?? fallback).trim()
+const env = import.meta.env ?? {}
+
+// A blank var counts as missing, so a copied-but-unfilled .env.example still
+// renders. Genuinely optional fields pass no fallback, so blank stays blank
+// and the feature hides.
+export const val = (v, fallback = '') => (v ?? '').trim() || fallback
 
 const formId = val(env.VITE_FORMSPREE_ID)
 
