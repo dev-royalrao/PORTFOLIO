@@ -7,9 +7,12 @@ const env = import.meta.env ?? {}
 // and the feature hides.
 export const val = (v, fallback = '') => (v ?? '').trim() || fallback
 
-// Full POST URL for the contact form — a Google Apps Script /exec URL
-// (see scripts/contact-form.gs) or a Formspree endpoint. Both take a form POST.
-const formEndpoint = val(env.VITE_FORM_ENDPOINT)
+// Both of these end up in the public JS bundle whatever route they take, so the
+// live values sit here as defaults and .env / CI vars override them.
+const formEndpoint = val(
+  env.VITE_FORM_ENDPOINT,
+  'https://script.google.com/macros/s/AKfycbyyoGAQlc1FlKJCZ1bEp4K1wEoUjUNvK4MfsCykXlxFnj9M9cvDya5rH6nn4q7LbuSO/exec',
+)
 
 export const profile = {
   name: val(env.VITE_NAME, 'Royal Rao'),
@@ -27,7 +30,7 @@ export const profile = {
   resume: val(env.VITE_RESUME_URL, './Royal_Rao_Resume.pdf'),
   photo: val(env.VITE_PHOTO_URL, './profile.jpg'),
   video: val(env.VITE_VIDEO_URL),
-  scheduleUrl: val(env.VITE_SCHEDULE_URL),
+  scheduleUrl: val(env.VITE_SCHEDULE_URL, 'https://cal.com/royalrao/quick-chat'),
   formEndpoint,
 }
 
