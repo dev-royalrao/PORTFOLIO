@@ -330,7 +330,7 @@ function Contact() {
 
   async function onSubmit(e) {
     e.preventDefault()
-    // ponytail: VITE_FORMSPREE_ID not set -> say so instead of failing silently
+    // ponytail: VITE_FORM_ENDPOINT not set -> say so instead of failing silently
     if (!profile.formEndpoint) {
       setError(`The form is not wired up yet — email me at ${profile.email}.`)
       return
@@ -344,6 +344,13 @@ function Contact() {
         body: new FormData(e.target),
       })
       if (!res.ok) throw new Error('Request failed')
+      // Apps Script answers 200 even for a rejected submission, so read the body.
+      // A non-JSON body means it went through (Formspree redirects on success).
+      const data = await res.json().catch(() => ({ ok: true }))
+      if (data.ok === false) {
+        setError(data.error || `Could not send — email me at ${profile.email}.`)
+        return
+      }
       setSent(true)
       e.target.reset()
     } catch {
@@ -374,6 +381,15 @@ function Contact() {
             Message
             <textarea name="message" rows="5" required />
           </label>
+          {/* honeypot: hidden from people, bots fill it in and get silently dropped */}
+          <input
+            className="hp"
+            type="text"
+            name="company"
+            tabIndex="-1"
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <button className="btn primary" type="submit" disabled={busy}>
             {busy ? 'Sending…' : 'Send message'}
           </button>

@@ -385,6 +385,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .form input:focus,
 .form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
 .note { font-size: 14px; }
 .note.ok { color: var(--accent); }
 .note.err { color: #ff7b72; }

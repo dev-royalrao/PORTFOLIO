@@ -27,6 +27,11 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        env:
+          # Set these in Settings -> Secrets and variables -> Actions -> Variables.
+          # They are NOT secrets: Vite inlines them into the public JS bundle.
+          VITE_FORM_ENDPOINT: ${{ vars.VITE_FORM_ENDPOINT }}
+          VITE_SCHEDULE_URL: ${{ vars.VITE_SCHEDULE_URL }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

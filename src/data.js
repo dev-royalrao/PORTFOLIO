@@ -7,7 +7,9 @@ const env = import.meta.env ?? {}
 // and the feature hides.
 export const val = (v, fallback = '') => (v ?? '').trim() || fallback
 
-const formId = val(env.VITE_FORMSPREE_ID)
+// Full POST URL for the contact form — a Google Apps Script /exec URL
+// (see scripts/contact-form.gs) or a Formspree endpoint. Both take a form POST.
+const formEndpoint = val(env.VITE_FORM_ENDPOINT)
 
 export const profile = {
   name: val(env.VITE_NAME, 'Royal Rao'),
@@ -26,7 +28,7 @@ export const profile = {
   photo: val(env.VITE_PHOTO_URL, './profile.jpg'),
   video: val(env.VITE_VIDEO_URL),
   scheduleUrl: val(env.VITE_SCHEDULE_URL),
-  formEndpoint: formId ? `https://formspree.io/f/${formId}` : '',
+  formEndpoint,
 }
 
 export const work = [
